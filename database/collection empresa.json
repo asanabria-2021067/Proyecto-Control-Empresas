@@ -1,0 +1,261 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "empresas",
+    "dateExported": "2023-02-27T17:52:11.112Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "69ad940b-7436-4a44-84a0-2e4cdb6536d6",
+            "colId": "c1d74bee-997a-43d2-af2e-9d755a0fea00",
+            "containerId": "",
+            "name": "login",
+            "url": "localhost:8080/api/auth/login",
+            "method": "POST",
+            "sortNum": 5000,
+            "created": "2023-02-27T16:39:26.799Z",
+            "modified": "2023-02-27T17:42:38.388Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"correo\": \"angein2@gmail.com\",\n  \"password\": \"123456\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "645ebf75-33ca-4c93-a24c-78c7baf56381",
+            "colId": "c1d74bee-997a-43d2-af2e-9d755a0fea00",
+            "containerId": "",
+            "name": "Post empresas",
+            "url": "localhost:8080/api/empresas/agregar",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-02-27T16:39:26.797Z",
+            "modified": "2023-02-27T17:45:38.167Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\": \"Angel Sanabria2s\",\n  \"correo\": \"angeliniss2s@gmail.com\",\n  \"password\": \"123456\",\n  \"tipo\": \"Roll\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "6ac7e7e8-8530-4dd3-88be-a2f932fbc39b",
+            "colId": "c1d74bee-997a-43d2-af2e-9d755a0fea00",
+            "containerId": "",
+            "name": "Get empresas",
+            "url": "localhost:8080/api/empresas/mostrar/",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-02-27T16:39:26.798Z",
+            "modified": "2023-02-27T17:26:12.443Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "7ab98872-fe37-4558-8436-8dd4127624f4",
+            "colId": "c1d74bee-997a-43d2-af2e-9d755a0fea00",
+            "containerId": "",
+            "name": "put empresas",
+            "url": "localhost:8080/api/cursos/editar/63f6c2648080ef60fa211875",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2023-02-27T16:39:26.804Z",
+            "modified": "2023-02-27T17:27:33.753Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2M2Y3YTdhMjcyODY1ZDdiOTBiZThmNmUiLCJpYXQiOjE2NzcyNjA5MzksImV4cCI6MTY3NzI2NDUzOX0.3kbXnj4-SUrDCrpvxQgw1Mt0XmczM-UTg-bWOpfs31o"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\": \"Sociales\",\n  \"capacidadMinima\": 25\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "5d61ae02-f443-4901-8e15-c406f1080fb5",
+            "colId": "c1d74bee-997a-43d2-af2e-9d755a0fea00",
+            "containerId": "",
+            "name": "delete Empresas",
+            "url": "localhost:8080/api/usuarios/eliminar/estudiante/63f6dbb8df0a77fb7092408a",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2023-02-27T16:39:26.800Z",
+            "modified": "2023-02-27T16:39:26.800Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2M2Y2ZmYxNjIxYmJiNDY5NTk4MWI0OGYiLCJpYXQiOjE2NzcxNzQ3MjgsImV4cCI6MTY3NzE3ODMyOH0.5kx02BrIKl8wpyD8Ie1Xp-XCRxER_xuUUpQE1bc_j1I"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "61978e45-3b37-49a5-90eb-f4da87f7b0b9",
+            "colId": "c1d74bee-997a-43d2-af2e-9d755a0fea00",
+            "containerId": "",
+            "name": "get sucursales",
+            "url": "localhost:8080/api/cursos/mostrar/",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2023-02-27T16:39:26.803Z",
+            "modified": "2023-02-27T16:39:26.803Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "9bd980bd-a2e3-406a-9a3b-d16596e3e394",
+            "colId": "c1d74bee-997a-43d2-af2e-9d755a0fea00",
+            "containerId": "",
+            "name": "post sucursales",
+            "url": "localhost:8080/api/sucursales/agregar",
+            "method": "POST",
+            "sortNum": 75000,
+            "created": "2023-02-27T17:27:09.791Z",
+            "modified": "2023-02-27T17:41:57.046Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\": \"Logitech\",\n  \"ubicacion\" : \"Villa Nueva\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "c6394665-a24d-4c92-85c4-67b550795a51",
+            "colId": "c1d74bee-997a-43d2-af2e-9d755a0fea00",
+            "containerId": "",
+            "name": "put sucursales",
+            "url": "localhost:8080/api/usuarios/editar/profesor/63f6bb1b06a22db56a04b866",
+            "method": "PUT",
+            "sortNum": 90000,
+            "created": "2023-02-27T16:39:26.805Z",
+            "modified": "2023-02-27T16:39:26.805Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2M2YzMTM3NzAwYjU5NDAyNDcxNGFiYjAiLCJpYXQiOjE2NzcxMzM4NjIsImV4cCI6MTY3NzEzNzQ2Mn0.7zcdy3hUp6MOux26AQ10Ld51lvFc1iCw5UOzyKKPv3M"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\": \"Juanito\",\n  \"correo\": \"jpersez20221@gmail.com\",\n  \"password\": \"123456\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "54454562-16d1-42e7-a0ac-b9067ed57621",
+            "colId": "c1d74bee-997a-43d2-af2e-9d755a0fea00",
+            "containerId": "",
+            "name": "delete sucursales",
+            "url": "localhost:8080/api/cursos/eliminar/63f6c2648080ef60fa211875",
+            "method": "DELETE",
+            "sortNum": 95000,
+            "created": "2023-02-27T16:39:26.807Z",
+            "modified": "2023-02-27T17:30:44.528Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2M2Y3YTdhMjcyODY1ZDdiOTBiZThmNmUiLCJpYXQiOjE2NzcyNjA5MzksImV4cCI6MTY3NzI2NDUzOX0.3kbXnj4-SUrDCrpvxQgw1Mt0XmczM-UTg-bWOpfs31o"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "d13d055e-2f19-4a32-9c45-3574a0d601bd",
+            "colId": "c1d74bee-997a-43d2-af2e-9d755a0fea00",
+            "containerId": "",
+            "name": "put tipos",
+            "url": "localhost:8080/api/tipos/editar/",
+            "method": "PUT",
+            "sortNum": 100000,
+            "created": "2023-02-27T16:39:26.806Z",
+            "modified": "2023-02-27T17:35:24.611Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2M2Y3MDJkMTQ1M2QyNzZjODFjOGYzOTMiLCJpYXQiOjE2NzcyNjEwOTMsImV4cCI6MTY3NzI2NDY5M30.rZEZuraa78ngPwali0cjmyjaAF8rw7vf8I4lwqN9Wsg"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"tipo\": \"Angel Sanabria\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "6a7eead2-20e5-4691-bb2d-86721023211f",
+            "colId": "c1d74bee-997a-43d2-af2e-9d755a0fea00",
+            "containerId": "",
+            "name": "post tipos",
+            "url": "localhost:8080/api/tipo/agregar/",
+            "method": "POST",
+            "sortNum": 110000,
+            "created": "2023-02-27T17:32:44.046Z",
+            "modified": "2023-02-27T17:36:09.330Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"tipo\": \"Angel Sanabria\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "e6636b1e-37e2-4b23-b59e-ae9a63ec8ed2",
+            "colId": "c1d74bee-997a-43d2-af2e-9d755a0fea00",
+            "containerId": "",
+            "name": "get tipos",
+            "url": "localhost:8080/api/tipo/mostrar/",
+            "method": "GET",
+            "sortNum": 120000,
+            "created": "2023-02-27T16:39:26.808Z",
+            "modified": "2023-02-27T17:36:00.010Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2M2Y2ZmYxNjIxYmJiNDY5NTk4MWI0OGYiLCJpYXQiOjE2NzcxNzAyNDEsImV4cCI6MTY3NzE3Mzg0MX0.OPWXyS4ktUinMFbN9xzMdu6o8wJuI1uyFXKocsTJ8Ps"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "993d1d29-41dd-4158-ba96-d9a8f6a2d002",
+            "colId": "c1d74bee-997a-43d2-af2e-9d755a0fea00",
+            "containerId": "",
+            "name": "delete tipos",
+            "url": "localhost:8080/api/tipo/eliminar/",
+            "method": "DELETE",
+            "sortNum": 130000,
+            "created": "2023-02-27T17:32:55.535Z",
+            "modified": "2023-02-27T17:36:05.152Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2M2Y3YTdhMjcyODY1ZDdiOTBiZThmNmUiLCJpYXQiOjE2NzcyNjA5MzksImV4cCI6MTY3NzI2NDUzOX0.3kbXnj4-SUrDCrpvxQgw1Mt0XmczM-UTg-bWOpfs31o"
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
