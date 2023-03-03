@@ -22,7 +22,7 @@ const municipios = [
     "Santa Cruz Naranjo",
     "Villa Canales",
     "Villa Nueva"
-  ];
+];
 const getSucursales = async (req = request, res = response) => {
 
     //Condiciones del get
@@ -41,25 +41,24 @@ const postSucursal = async (req = request, res = response) => {
     const { estado, ...body } = req.body;
     const _id = req.usuario.id;
     // Validacion si la empresa ya existe
-    const sucursalDB = await Sucursal.findOne({ nombre: body.nombre });
-    console.log("Sucursal", sucursalDB);
     const data = {
         ...body,
         nombre: body.nombre.toUpperCase(),
         empresa: _id
     }
+    const sucursalDB = await Sucursal.findOne({ nombre: data.nombre });
     if (sucursalDB) {
         return res.status(400).json({
             msg: `La sucursal ${sucursalDB.nombre} ya existe en la DB`
         })
     } else {
-        if(municipios.includes(body.ubicacion)){
+        if (municipios.includes(body.ubicacion)) {
             const sucursalDB = new Sucursal(data);
             //Guardar en la DB
             await sucursalDB.save();
             res.status(201).json(sucursalDB);
-            await Empresa.findByIdAndUpdate(_id, {$push: { sucursales:[sucursalDB._id]}})
-        }else{
+            await Empresa.findByIdAndUpdate(_id, { $push: { sucursales: [sucursalDB._id] } })
+        } else {
             res.status(400).json({
                 msg: `La ubicacion ${body.ubicacion} no esta registrada o esta mal escrita. Ejemplo: Villa Nueva`
             })
@@ -69,7 +68,7 @@ const postSucursal = async (req = request, res = response) => {
 
 
 const putSucursal = async (req = request, res = response) => {
-    const {id} = req.params;
+    const { id } = req.params;
     const { ...resto } = req.body;
     console.log("Parametro", id);
     const idEmpresa = req.usuario.id;
@@ -82,37 +81,51 @@ const putSucursal = async (req = request, res = response) => {
     const sucursalDB = await Sucursal.findOne({ nombre: resto.nombre });
     console.log("Sucursal", sucursalDB);
     // Validacion si la empresa ya existe
-    if(buscador.empresa != idEmpresa) {
-       res.status(404).json(`La sucursal con el id: ${id}, no pertenece a su empresa`)
-    }else{
+    if (buscador.empresa !== idEmpresa) {
+        res.status(404).json(`La sucursal con el id: ${id}, no pertenece a su empresa`)
+    } else {
         // {
         if (sucursalDB) {
-             return res.status(400).json({
+            return res.status(400).json({
                 msg: `La sucursal ${sucursalDB.nombre} ya existe en la DB`
             })
         } else {
-            if(municipios.includes(resto.ubicacion)){
+            if (municipios.includes(resto.ubicacion)) {
                 const sucursalEditada = await Sucursal.findByIdAndUpdate(id, resto);
                 res.status(201).json(sucursalEditada);
-    
-            }else{
+
+            } else {
                 res.status(400).json({
                     msg: `La ubicacion ${resto.ubicacion} no esta registrada o esta mal escrita. Ejemplo: Villa Nueva`
                 })
             }
         }
-        
+
     }
 
 }
 
 
 const deleteSucursal = async (req = request, res = response) => {
-    const {id} = req.params;
+    const { id } = req.params;
     const _id = req.usuario.id;
+    console.log(_id)
     //Eliminar fisicamente de la DB
-    const sucursalEliminada = await Sucursal.findByIdAndDelete(id);
-    res.status(201).json(sucursalEliminada);
+    const buscador = await Sucursal.findById(id);
+    console.log("Buscador", buscador);
+    if(buscador){
+    if (buscador.empresa != _id) {
+        res.status(404).json(`La sucursal con el id: ${id}, no pertenece a su empresa`)
+    } else {
+        const sucursalEliminada = await Sucursal.findByIdAndDelete(id);
+        await Empresa.findByIdAndUpdate(_id, { $pull: { sucursales: id } })
+        res.status(201).json(sucursalEliminada);
+    }
+    }else{
+        res.status(400).json({
+            msg: 'La sucursal ya fue eliminada'
+        })
+    }
 }
 
 
