@@ -10,9 +10,9 @@ const getEmpresas = async (req = request, res = response) => {
 
     const listaEmpresas = await Promise.all([
         Empresa.countDocuments(query),
-        Empresa.find(query)
+        Empresa.find(query).populate('sucursales', 'nombre, ubicacion')
     ]);
-
+    
     res.status(201).json(listaEmpresas)
 
 }
@@ -53,7 +53,7 @@ const postEmpresa = async (req = request, res = response) => {
 
 const putEmpresa = async (req = request, res = response) => {
     const _id = req.usuario.id;
-    const { ...resto } = req.body;
+    const { correo, ...resto } = req.body;
 
     //Editar al Curso por el id
     const empresaEditada = await Empresa.findByIdAndUpdate(_id, resto);

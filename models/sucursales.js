@@ -12,8 +12,12 @@ const SucursalSchema = Schema({
     estado:{
         type: Boolean,
         default: true,
+    },
+    empresa:{
+        type: Schema.Types.ObjectId,
+        ref: 'Empresas'
     }
 });
 
 
-module.exports = model('Sucursale', SucursalSchema);
+module.exports = model('Sucursales', SucursalSchema);
