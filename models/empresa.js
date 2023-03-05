@@ -30,7 +30,7 @@ const EmpresaSchema = Schema({
     sucursales:[{
         type: Schema.Types.ObjectId,
         ref: 'Sucursales',
-        default: ['Sin sucursales']
+        default: ['']
     }],
 });
 

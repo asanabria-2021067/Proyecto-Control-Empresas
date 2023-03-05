@@ -3,10 +3,15 @@ const { check } = require('express-validator');
 const { tieneRole } = require('../middlewares/validar-rol');
 const { validarJWT } = require('../middlewares/validar-jwt');
 const { validarCampos } = require('../middlewares/validar-campos');
-const { postSucursal, putSucursal, deleteSucursal, getSucursales } = require('../controllers/sucursal');
+const { postSucursal, putSucursal, deleteSucursal, getSucursales, getMisSucursales } = require('../controllers/sucursal');
 
 const router = Router();
 router.get('/mostrar' ,getSucursales);
+
+router.get('/mostrarMisSucursales',[
+    validarJWT,
+    validarCampos,
+] ,getMisSucursales);
 
 router.post('/agregar', [
     validarJWT,

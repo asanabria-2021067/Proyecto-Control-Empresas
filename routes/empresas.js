@@ -4,11 +4,14 @@ const { check } = require('express-validator');
 const { validarJWT } = require('../middlewares/validar-jwt');
 const { validarCampos } = require('../middlewares/validar-campos');
 const { emailExiste, esTipoValido } = require('../helpers/db-validators');
-const { getEmpresas, postEmpresa, putEmpresa, deleteEmpresa } = require('../controllers/empresa');
+const { getEmpresas, postEmpresa, putEmpresa, deleteEmpresa, getMiEmpresa } = require('../controllers/empresa');
 const router = Router();
 
 router.get('/mostrar', getEmpresas);
-
+router.get('/mostrarMiEmpresa', [
+    validarJWT,
+    validarCampos
+], getMiEmpresa);
 router.post('/agregar', [
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
     check('password', 'El password debe de ser más de 6 digitos').isLength( { min: 6 } ),
@@ -16,7 +19,7 @@ router.post('/agregar', [
     check('correo').custom( emailExiste ),
     check('tipo', 'El tipo de empresa es obligatorio').not().isEmpty(),
     check('tipo').custom(esTipoValido),
-    check('sucursales', 'Las sucursales son obligatorias').not().isEmpty(),
+    // check('sucursales', 'Las sucursales son obligatorias').not().isEmpty(),
     validarCampos,
 ] ,postEmpresa);
 

@@ -10,8 +10,17 @@ const getEmpresas = async (req = request, res = response) => {
 
     const listaEmpresas = await Promise.all([
         Empresa.countDocuments(query),
-        Empresa.find(query).populate('sucursales', 'nombre, ubicacion')
+        Empresa.find(query).populate('sucursales', 'nombre')
     ]);
+    
+    res.status(201).json(listaEmpresas)
+
+}
+
+const getMiEmpresa = async (req = request, res = response) => {
+    const _id = req.usuario.id;
+    
+    const listaEmpresas = await Empresa.findById(_id).populate('sucursales', 'nombre')
     
     res.status(201).json(listaEmpresas)
 
@@ -29,6 +38,7 @@ const postEmpresa = async (req = request, res = response) => {
             msg: `La empresa ${empresaDB.nombre} ya existe en la DB`
         })
     } else {
+        if(sucursales){
         let valorRepetido;
         for (let i = 0; i < sucursales.length; i++) {
             for (let j = i + 1; j < sucursales.length; j++) {
@@ -45,6 +55,10 @@ const postEmpresa = async (req = request, res = response) => {
             await empresaDBguardada.save();
             res.status(201).json(empresaDBguardada);
         }
+    }else{
+        await empresaDBguardada.save();
+        res.status(201).json(empresaDBguardada);
+    }
         //Guardar en la DB
        
     }
@@ -54,12 +68,27 @@ const postEmpresa = async (req = request, res = response) => {
 const putEmpresa = async (req = request, res = response) => {
     const _id = req.usuario.id;
     const { correo, ...resto } = req.body;
+    if(resto.sucursales){
+        let valorRepetido;
+        for (let i = 0; i < resto.sucursales.length; i++) {
+            for (let j = i + 1; j < resto.sucursales.length; j++) {
+                if (resto.sucursales[i] === resto.sucursales[j]) {
+                    valorRepetido = resto.sucursales[i];
+                    break;
+                }
+                }
+            
+        }
+        if (valorRepetido) {
+            res.status(400).json(`La sucursal con el id: ${valorRepetido} esta repetida`)
+        }else{
+        //Editar al Curso por el id
+        const empresaEditada = await Empresa.findByIdAndUpdate(_id, resto);
+        res.status(201).json(empresaEditada);
+        }
+    
 
-    //Editar al Curso por el id
-    const empresaEditada = await Empresa.findByIdAndUpdate(_id, resto);
-
-    res.status(201).json(empresaEditada);
-
+}
 }
 
 
@@ -81,6 +110,7 @@ module.exports = {
     postEmpresa,
     putEmpresa,
     deleteEmpresa,
+    getMiEmpresa
 }
 
 

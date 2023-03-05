@@ -17,11 +17,11 @@ const getTipos = async (req = request, res = response) => {
 const postTipo = async (req = request, res = response) => {
     const { tipo, ...body } = req.body;
 
-    const tipoDB = await Tipo.findOne({ tipo: body.nombre });
+    const tipoDB = await Tipo.findOne({ tipo: tipo });
     // Validacion si la empresa ya existe
     if (tipoDB) {
         return res.status(400).json({
-            msg: `El tipo ${tipoDB.nombre} ya existe en la DB`
+            msg: `El tipo ${tipoDB.tipo} ya existe en la DB`
         })
     } else {
         const tipoGuardadoDB = new Tipo({ tipo });

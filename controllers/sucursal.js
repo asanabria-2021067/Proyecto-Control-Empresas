@@ -37,6 +37,15 @@ const getSucursales = async (req = request, res = response) => {
 
 }
 
+const getMisSucursales = async (req = request, res = response) => {
+    const _id = req.usuario.id;
+    
+    const listaSucursales = await Sucursal.find({empresa: _id});
+    
+    res.status(201).json(listaSucursales)
+
+}
+
 const postSucursal = async (req = request, res = response) => {
     const { estado, ...body } = req.body;
     const _id = req.usuario.id;
@@ -60,7 +69,8 @@ const postSucursal = async (req = request, res = response) => {
             await Empresa.findByIdAndUpdate(_id, { $push: { sucursales: [sucursalDB._id] } })
         } else {
             res.status(400).json({
-                msg: `La ubicacion ${body.ubicacion} no esta registrada o esta mal escrita. Ejemplo: Villa Nueva`
+                msg: `La ubicacion ${body.ubicacion} no esta registrada como un municipio de Guatemala o esta mal escrita. Ingrese alguno de los siguientes municipios:
+                ${[municipios]}`,
             })
         }
     }
@@ -81,7 +91,7 @@ const putSucursal = async (req = request, res = response) => {
     const sucursalDB = await Sucursal.findOne({ nombre: resto.nombre });
     console.log("Sucursal", sucursalDB);
     // Validacion si la empresa ya existe
-    if (buscador.empresa !== idEmpresa) {
+    if (buscador.empresa != idEmpresa) {
         res.status(404).json(`La sucursal con el id: ${id}, no pertenece a su empresa`)
     } else {
         // {
@@ -134,6 +144,7 @@ module.exports = {
     postSucursal,
     putSucursal,
     deleteSucursal,
+    getMisSucursales
 }
 
 
